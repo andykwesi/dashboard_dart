@@ -15,35 +15,35 @@ class DashBoardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final responsive = ResponsiveBreakpoints.of(context);
     const summaryCards = [
-      SummaryCard(title: 'Total Sales', value: '\$125,000'),
-      SummaryCard(title: 'Total Users', value: '12,000'),
-      SummaryCard(title: 'KPI Progress Rate', value: '52.3%'),
+      SummaryCard(title: 'Todays Collection', value: 'GHS 0'),
+      SummaryCard(title: 'Last Payout', value: 'GHS 0'),
+      SummaryCard(title: 'Next Payout', value: 'GHS 0'),
+      SummaryCard(title: 'Disbursement', value: 'GHS 0'),
     ];
 
-    return ContentView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const PageHeader(
-            title: 'Dashboard',
-            description: 'A summary of key data and insights on your project.',
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const PageHeader(
+          title: 'WingiPAY Merchant',
+          description: 'A summary of key data and insights on your project.',
+        ),
+        const Gap(16),
+        if (responsive.isMobile)
+          ...summaryCards
+        else
+          Row(
+            children: summaryCards
+                .map<Widget>((card) => Expanded(child: card))
+                .intersperse(const Gap(16))
+                .toList(),
           ),
-          const Gap(16),
-          if (responsive.isMobile)
-            ...summaryCards
-          else
-            Row(
-              children: summaryCards
-                  .map<Widget>((card) => Expanded(child: card))
-                  .intersperse(const Gap(16))
-                  .toList(),
-            ),
-          const Gap(16),
-          const Expanded(
-            child: _TableView(),
-          ),
-        ],
-      ),
+        const Gap(16),
+        PageHeader(title: 'dashboard', description: 'test'),
+        const Expanded(
+          child: _TableView(),
+        ),
+      ],
     );
   }
 }

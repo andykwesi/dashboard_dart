@@ -33,6 +33,7 @@ class App extends StatelessWidget {
           routerConfig: router,
           theme: theme,
           darkTheme: darkTheme,
+          debugShowCheckedModeBanner: false,
         ),
       ),
     );
